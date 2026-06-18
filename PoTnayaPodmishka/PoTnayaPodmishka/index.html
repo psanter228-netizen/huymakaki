@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Турне – морские путешествия</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- 🔥 Firebase SDK (compat) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+  <!-- ШАПКА -->
+  <header id="header">
+    <div class="container header-wrapper">
+      <div class="logo"><i class="fas fa-ship"></i>Турне</div>
+      <div class="burger" id="burger">
+        <span></span><span></span><span></span>
+      </div>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="#tours">Туры</a></li>
+        <li><a href="#advantages">Почему мы</a></li>
+        <li><a href="#gallery">Галерея</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- БАННЕР -->
+  <section class="banner" id="banner">
+    <div class="banner-bg" id="bannerBg"></div>
+    <div class="banner-content">
+      <span class="banner-tag">Лучшие направления</span>
+      <h1>Откройте <span>море</span> приключений</h1>
+      <p>Путешествия, которые меняют жизнь. Лучшие маршруты и комфорт.</p>
+      <a href="#tours" class="btn">Выбрать тур <i class="fas fa-arrow-right"></i></a>
+    </div>
+    <div class="scroll-indicator">
+      <span>Листайте вниз</span>
+      <i class="fas fa-chevron-down"></i>
+    </div>
+  </section>
+
+  <!-- ТУРЫ -->
+  <section id="tours" class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">ПУТЕШЕСТВИЯ</span>
+      <h2 class="section-title"><i class="fas fa-umbrella-beach"></i>Популярные туры</h2>
+      <p class="section-subtitle">Самые востребованные направления от нашей команды</p>
+    </div>
+    <div class="tours-grid">
+      <!-- Карточка 1 -->
+      <div class="tour-card fade-in" data-tour="Санторини, Греция">
+        <div class="tour-image">
+          <img src="images/tour-santorini.jpg" alt="Санторини" loading="lazy" />
+          <span class="tour-badge">Горящий</span>
+        </div>
+        <div class="tour-card-body">
+          <h3>Санторини, Греция</h3>
+          <div class="location"><i class="fas fa-map-pin"></i> Эгейское море</div>
+          <p>Белоснежные домики, закаты и лазурные воды.</p>
+          <div class="tour-footer">
+            <span class="tour-price">₽ 80 000 <small>/ 7 ночей</small></span>
+            <button class="btn-order" onclick="openOrderModal(this)">Заказать <i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+      <!-- Карточка 2 -->
+      <div class="tour-card fade-in" data-tour="Бора-Бора, Франц. Полинезия">
+        <div class="tour-image">
+          <img src="images/tour-borabora.jpg" alt="Бора-Бора" loading="lazy" />
+          <span class="tour-badge vip">VIP</span>
+        </div>
+        <div class="tour-card-body">
+          <h3>Бора-Бора, Франц. Полинезия</h3>
+          <div class="location"><i class="fas fa-map-pin"></i> Тихий океан</div>
+          <p>Райский отдых в овервотер-бунгало.</p>
+          <div class="tour-footer">
+            <span class="tour-price">₽ 195 000 <small>/ 10 ночей</small></span>
+            <button class="btn-order" onclick="openOrderModal(this)">Заказать <i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+      <!-- Карточка 3 -->
+      <div class="tour-card fade-in" data-tour="Бали, Индонезия">
+        <div class="tour-image">
+          <img src="images/tour-bali.jpg" alt="Бали" loading="lazy" />
+          <span class="tour-badge popular">Популярный</span>
+        </div>
+        <div class="tour-card-body">
+          <h3>Бали, Индонезия</h3>
+          <div class="location"><i class="fas fa-map-pin"></i> Индийский океан</div>
+          <p>Джунгли, храмы, сёрфинг и йога-ретриты.</p>
+          <div class="tour-footer">
+            <span class="tour-price">₽ 120 000 <small>/ 12 ночей</small></span>
+            <button class="btn-order" onclick="openOrderModal(this)">Заказать <i class="fas fa-chevron-right"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ПРЕИМУЩЕСТВА -->
+  <section id="advantages">
+    <div class="container">
+      <div class="section-header fade-in">
+        <span class="section-tag">ПРЕИМУЩЕСТВА</span>
+        <h2 class="section-title"><i class="fas fa-star"></i>Почему мы</h2>
+        <p class="section-subtitle">Нас выбирают за надёжность и душу</p>
+      </div>
+      <div class="advantages-grid">
+        <div class="advantage-item fade-in">
+          <div class="advantage-icon"><i class="fas fa-user-tie"></i></div>
+          <h4>Опыт 12 лет</h4>
+          <p>Тысячи довольных путешественников</p>
+        </div>
+        <div class="advantage-item fade-in">
+          <div class="advantage-icon"><i class="fas fa-shield-alt"></i></div>
+          <h4>Безопасность</h4>
+          <p>Страховка и поддержка 24/7</p>
+        </div>
+        <div class="advantage-item fade-in">
+          <div class="advantage-icon"><i class="fas fa-hand-holding-heart"></i></div>
+          <h4>Индивидуальный подход</h4>
+          <p>Туры под ваш бюджет и предпочтения</p>
+        </div>
+        <div class="advantage-item fade-in">
+          <div class="advantage-icon"><i class="fas fa-plane-departure"></i></div>
+          <h4>Прямые рейсы</h4>
+          <p>Только проверенные авиакомпании</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ГАЛЕРЕЯ -->
+  <section id="gallery" class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">ВДОХНОВЕНИЕ</span>
+      <h2 class="section-title"><i class="fas fa-images"></i>Фотогалерея</h2>
+      <p class="section-subtitle">Вдохновляйтесь красотой мира</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item fade-in" onclick="openPhotoModal('images/gallery-1.jpg', 'Мальдивы')">
+        <img src="images/gallery-1.jpg" alt="Мальдивы" loading="lazy" />
+        <div class="overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openPhotoModal('images/gallery-2.jpg', 'Норвегия')">
+        <img src="images/gallery-2.jpg" alt="Норвегия" loading="lazy" />
+        <div class="overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openPhotoModal('images/gallery-3.jpg', 'Таиланд')">
+        <img src="images/gallery-3.jpg" alt="Таиланд" loading="lazy" />
+        <div class="overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+      <div class="gallery-item fade-in" onclick="openPhotoModal('images/gallery-4.jpg', 'Дубай')">
+        <img src="images/gallery-4.jpg" alt="Дубай" loading="lazy" />
+        <div class="overlay"><i class="fas fa-search-plus"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- КОНТАКТЫ -->
+  <section id="contact" class="container">
+    <div class="section-header fade-in">
+      <span class="section-tag">СВЯЗЬ</span>
+      <h2 class="section-title"><i class="fas fa-paper-plane"></i>Свяжитесь с нами</h2>
+      <p class="section-subtitle">Мы ответим на все вопросы и поможем выбрать идеальный тур</p>
+    </div>
+    <div class="contact-section fade-in">
+      <div class="contact-info">
+        <h3>Контакты</h3>
+        <p><i class="fas fa-map-marker-alt"></i> г. Красноярск, ул. Забобонова, д. 5</p>
+        <p><i class="fas fa-phone-alt"></i> +7 (960) 772-66-31</p>
+        <p><i class="fas fa-envelope"></i> info@turne.ru</p>
+        <p><i class="fas fa-clock"></i> Пн–Пт: 10:00 – 20:00</p>
+        <div class="contact-social">
+          <p><i class="fab fa-telegram"></i> <a href="https://t.me/Maksutkk" target="_blank">@Maksutkk</a></p>
+          <p><i class="fab fa-vk"></i> <a href="https://vk.com/mordekaisermain" target="_blank">ВКонтакте</a></p>
+        </div>
+      </div>
+      <form class="contact-form" action="#" method="POST">
+        <input type="text" placeholder="Ваше имя" required />
+        <input type="email" placeholder="Email" required />
+        <input type="text" placeholder="Телефон" />
+        <textarea rows="4" placeholder="Ваше сообщение..."></textarea>
+        <button type="submit">Отправить запрос</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ФУТЕР -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h4><i class="fas fa-ship"></i> Турне</h4>
+          <p>Путешествия со смыслом. Открываем мир для вас!</p>
+          <div class="footer-social">
+            <a href="https://vk.com/mordekaisermain" target="_blank" title="ВКонтакте"><i class="fab fa-vk"></i></a>
+            <a href="https://t.me/Maksutkk" target="_blank" title="Telegram"><i class="fab fa-telegram-plane"></i></a>
+          </div>
+        </div>
+        <div>
+          <h4>Быстрые ссылки</h4>
+          <a href="#tours">Туры</a><br />
+          <a href="#advantages">О нас</a><br />
+          <a href="#gallery">Галерея</a><br />
+          <a href="#contact">Контакты</a>
+        </div>
+        <div>
+          <h4>Подписка</h4>
+          <p>Получайте свежие предложения</p>
+          <form class="subscribe-form">
+            <input type="email" placeholder="Email" />
+            <button>OK</button>
+          </form>
+          <p style="margin-top:15px;">
+            <span class="admin-link" onclick="openAdminLogin()">🔐 Админ-панель</span>
+          </p>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 Турне. Все права защищены.
+      </div>
+    </div>
+  </footer>
+
+  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПРОСМОТРА ФОТО -->
+  <div class="modal photo-modal" id="photoModal">
+    <div class="modal-content photo-modal-content">
+      <span class="modal-close" onclick="closePhotoModal()">&times;</span>
+      <div class="photo-modal-body">
+        <img id="photoModalImage" src="" alt="Фото" />
+        <p id="photoModalCaption"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ЗАКАЗА -->
+  <div class="modal" id="orderModal">
+    <div class="modal-content">
+      <span class="modal-close" onclick="closeModal('orderModal')">&times;</span>
+      <h2>Заказ тура</h2>
+      <form id="orderForm">
+        <input type="hidden" id="orderTour" value="" />
+        <label>Тур</label>
+        <input type="text" id="orderTourDisplay" readonly />
+        <label>Ваше имя *</label>
+        <input type="text" id="orderName" required placeholder="Иван Петров" />
+        <label>Телефон *</label>
+        <input type="tel" id="orderPhone" required placeholder="+7 999 123-45-67" />
+        <label>Email</label>
+        <input type="email" id="orderEmail" placeholder="ivan@mail.ru" />
+        <label>Комментарий</label>
+        <textarea id="orderComment" rows="3" placeholder="Дополнительные пожелания..."></textarea>
+        <button type="submit">Отправить заявку</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ВХОДА В АДМИНКУ -->
+  <div class="modal" id="adminLoginModal">
+    <div class="modal-content" style="max-width: 400px;">
+      <span class="modal-close" onclick="closeModal('adminLoginModal')">&times;</span>
+      <h2><i class="fas fa-lock"></i> Вход в админ-панель</h2>
+      <form id="adminLoginForm">
+        <label>Введите пароль</label>
+        <input type="password" id="adminPassword" placeholder="Пароль" required />
+        <button type="submit">Войти</button>
+      </form>
+      <p style="margin-top:10px; font-size:13px; color:#888;">Пароль по умолчанию: <strong>admin123</strong></p>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ АДМИН-ПАНЕЛИ -->
+  <div class="modal" id="adminPanelModal">
+    <div class="modal-content" style="max-width: 900px; max-height: 90vh; overflow-y: auto;">
+      <span class="modal-close" onclick="closeModal('adminPanelModal')">&times;</span>
+      <h2><i class="fas fa-user-cog"></i> Админ-панель – Заказы</h2>
+      <div id="adminOrdersContainer">
+        <p style="text-align:center; color:#888;">Загрузка заказов...</p>
+      </div>
+      <button onclick="logoutAdmin()" class="btn-logout">Выйти</button>
+    </div>
+  </div>
+
+  <script src="scripts/script.js"></script>
+</body>
+</html>
